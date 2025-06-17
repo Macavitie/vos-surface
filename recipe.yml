@@ -22,12 +22,28 @@ stages:
     - apt-get update
 
   # Put your custom actions below this comment
+- name: add-kernel-repo
+  type: shell
+  commands:
+  - wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc | gpg --dearmor | dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
+  - echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" | tee /etc/apt/sources.list.d/linux-surface.list
+  - apt-get update
+
+- name: add-kernel-packages
+  type: apt
+  source:
+    packages:
+    - linux-image-surface
+    - linux-headers-surface
+    - libwacom-surface
+    - iptsd
 
   - name: example-packages # Sample module using the built-in Apt module to install packages
     type: apt
     source:
       packages:
       - vim
+      - gnome-tweaks
 
   - name: example-commands # Sample module demonstrating the Shell module with custom commands
     type: shell
