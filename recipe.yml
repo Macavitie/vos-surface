@@ -40,7 +40,6 @@ stages:
       - firmware-iwlwifi
       - firmware-misc-nonfree
       - firmware-linux-nonfree
-      - linux-firmware
 
   - name: add-qol-packages
     type: apt
