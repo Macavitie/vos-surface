@@ -37,6 +37,7 @@ stages:
       - linux-headers-surface
       - libwacom-surface
       - iptsd
+      - firmware-iwlwifi
 
   - name: add-qol-packages
     type: apt
